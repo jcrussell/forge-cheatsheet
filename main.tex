@@ -1,0 +1,194 @@
+\documentclass[10pt,landscape,a4paper]{article}
+\usepackage[top=0.2in, bottom=0.2in, left=0.2in, right=0.2in]{geometry}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+
+% --- Visual Styling ---
+\renewcommand{\familydefault}{\sfdefault}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\columnsep}{0.3in}
+\renewcommand{\arraystretch}{1.05} % Tighter tables
+
+% --- Custom Key Macro ---
+\definecolor{keygray}{HTML}{F2F2F2}
+\definecolor{bordergray}{HTML}{A0A0A0}
+\newcommand{\key}[1]{%
+    \raisebox{1pt}{\fcolorbox{bordergray}{keygray}{\texttt{\textbf{\footnotesize #1}}}}%
+}
+\newcommand{\cmd}{\key{Super}}
+\newcommand{\shft}{\key{Shift}}
+\newcommand{\ctrl}{\key{Ctrl}}
+\newcommand{\alt}{\key{Alt}}
+
+% --- Section Styling ---
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{black}}
+  {}{0em}{}[\hrule]
+\titlespacing*{\section}{0pt}{5pt}{2pt}
+
+\begin{document}
+
+% --- Header ---
+\begin{center}
+    {\Large \textbf{Forge Window Manager} \textbar{} \textsl{Keyboard Command Reference}}
+\end{center}
+\vspace{2pt}
+
+\raggedcolumns
+\begin{multicols}{3}
+
+% --- Section: Core Nav ---
+\section{Focus \& Navigation}
+\textit{Navigate the window tree using Vim-style keys.}
+
+\begin{tabular}{@{}ll@{}}
+    \textbf{Focus Window} & \\
+    \cmd + \key{h} \key{j} \key{k} \key{l} & Left / Down / Up / Right \\
+    \textbf{Move Window} & \textit{(Moves across monitors)} \\
+    \cmd + \shft + \key{h} \key{j} \key{k} \key{l} & Move in direction \\
+    \textbf{Swap Window} & \textit{(In-place exchange)} \\
+    \cmd + \ctrl + \key{h} \key{j} \key{k} \key{l} & Swap with neighbor \\
+    \cmd + \key{Enter} & Swap with Master \\
+\end{tabular}
+
+\vspace{4pt}
+
+% --- Section: Window Lifecycle ---
+\section{Window Lifecycle}
+\textit{Managing windows and applications.}
+
+\begin{tabular}{@{}ll@{}}
+    \textbf{Close \& Quit} & \\
+    \alt + \key{F4} & Close Window \\
+    \ctrl + \key{W} & Close Window (App-specific) \\
+    \ctrl + \key{Q} & Quit Application \\
+    \cmd + \key{H} & Hide/Minimize \\
+    \textbf{Launch \& Switch} & \\
+    \cmd & Activities / Launcher \\
+    \cmd + \key{A} & Application Menu \\
+    \alt + \key{Tab} & Switch Applications \\
+\end{tabular}
+
+\vspace{4pt}
+
+% --- Section: Layouts ---
+\section{Tiling \& Layouts}
+\textit{Container management and layout modes.}
+
+\begin{tabular}{@{}ll@{}}
+    \textbf{Modes} & \\
+    \cmd + \key{w} & Toggle Tiling (Workspace) \\
+    \cmd + \key{c} & Float Active Window \\
+    \cmd + \shft + \key{f} & Float All Windows (Panic) \\
+    \textbf{Container Type} & \\
+    \cmd + \shft + \key{s} & \textbf{Stacked} (Accordion) \\
+    \cmd + \shft + \key{t} & \textbf{Tabbed} (Browser-style) \\
+    \cmd + \key{g} & Switch Split (Horiz/Vert) \\
+\end{tabular}
+
+\vspace{4pt}
+
+\vspace{4pt}
+
+% --- Section: Resizing ---
+\section{Precision Resizing}
+\textit{Uses YUIO keys (top row).}
+
+\begin{tabular}{@{}ll@{}}
+    \textbf{Width Adjustment} & \\
+    \cmd + \ctrl + \key{y} \key{o} & Expand Left / Right \\
+    \cmd + \ctrl + \shft + \key{y} \key {o} & Shrink Left / Right \\
+    \textbf{Height Adjustment} & \\
+    \cmd + \ctrl + \key{u} \key{i} & Expand Down / Up \\
+    \cmd + \ctrl + \shft + \key{u} \key{i} & Shrink Down / Up \\
+\end{tabular}
+
+\vspace{4pt}
+
+% --- Section: Aesthetics ---
+\section{Gaps \& UI}
+\textit{Visual adjustments.}
+
+\begin{tabular}{@{}ll@{}}
+    \cmd + \ctrl + \key{+} \key{-} & Increase / Decrease Gaps \\
+    \ctrl + \alt + \key{y} & Toggle Tab Decorations \\
+    \cmd + \key{.} & Open Settings Panel \\
+\end{tabular}
+
+\vspace{4pt}
+
+% --- Section: Splitting ---
+\section{Split Control}
+\textit{Controls where the next window spawns.}
+
+\begin{tabular}{@{}ll@{}}
+    \cmd + \key{z} & \textbf{Split Horizontal} \\
+    & \small{\textit{(Next window opens to the side)}} \\
+    \cmd + \key{v} & \textbf{Split Vertical} \\
+    & \small{\textit{(Next window opens below)}} \\
+\end{tabular}
+
+% --- Section: Container Manipulation ---
+\section{Advanced Container Logic}
+\textit{Working with Tabbed/Stacked groups.}
+
+\begin{itemize}[leftmargin=10pt, noitemsep]
+    \item \textbf{Creating:} Toggle split (\cmd+\key{z}/\key{v}), then open new window.
+    \item \textbf{Converting:} Select split windows, press \cmd+\shft+\key{t} for Tabs.
+    \item \textbf{Exiting:} Use \cmd+\shft+\key{Direction} to pop window out of group.
+\end{itemize}
+
+%\vspace{6pt}
+\columnbreak
+
+% --- Section: Workspaces ---
+\section{Workspaces \& Monitors}
+\textit{Multi-monitor and workspace flow.}
+
+\begin{tabular}{@{}ll@{}}
+    \textbf{Switch Workspace} & \\
+    \cmd + \key{1-9} & Go to Workspace N \textit{\small(config req'd)} \\
+    \cmd + \key{PgUp} / \key{PgDn} & Next / Previous Workspace \\
+    \textbf{Move Window} & \\
+    \cmd + \shft + \key{1-9} & To Workspace N \\
+    \cmd + \shft + \key{PgUp/PgDn} & To Next / Previous \\
+    \cmd + \shft + \key{Home/End} & To First / Last \\
+    \textbf{Multi-Monitor} & \\
+    \cmd + \shft + \key{h} \key{l} & Move to Monitor Left/Right \\
+    \cmd + \key{x} & Flash Focus Border \\
+    & \textit{\small(Find cursor across screens)} \\
+\end{tabular}
+
+\vspace{4pt}
+
+% --- Section: Troubleshooting ---
+\section{Troubleshooting}
+\textit{When windows get stuck or behave oddly.}
+
+\begin{tabular}{@{}ll@{}}
+    \cmd + \key{c} & Force Float Window \\
+    \cmd + \shft + \key{f} & Float All, re-tile with \cmd+\key{w} \\
+    \alt + \key{F2}, \key{r} & Restart GNOME Shell \\
+    & \textit{\small(X11 only; Wayland: logout/login)} \\
+\end{tabular}
+
+\vspace{3pt}
+\small
+\textbf{Note:} Split keys (\cmd+\key{z}/\key{v}) set a flag on the \textit{container}—the next window you open or move will spawn in that direction. Configure workspace number shortcuts (\cmd+\key{1-9}) in Settings → Keyboard.
+
+\end{multicols}
+
+\vspace{4pt}
+\begin{center}
+    \small
+    \href{https://github.com/jcrussell/forge-cheatsheet}{https://github.com/jcrussell/forge-cheatsheet}
+\end{center}
+
+\end{document}
